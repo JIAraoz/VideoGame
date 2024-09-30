@@ -1,8 +1,25 @@
+import exceptions.LowHealthException;
+
 public class Character {
     private String name;
     private int health;
-    private int totalCharacters;
+    private static int totalCharacters;
+    public Character(){
+        health = 100;
+        name = "Guerrero";
+        totalCharacters++;
+    }
+    public Character(String name, int health) throws LowHealthException {
 
+        if(health <= 10){
+           throw new LowHealthException("the number must be greater than 10");
+        }else{
+            this.health=health;
+            this.name = name;
+            totalCharacters++;
+        }
+
+    }
     public String getName() {
         return name;
     }
@@ -19,11 +36,11 @@ public class Character {
         this.health = health;
     }
 
-    public int getTotalCharacters() {
+    public static int getTotalCharacters() {
         return totalCharacters;
     }
 
-    public void setTotalCharacters(int totalCharacters) {
-        this.totalCharacters = totalCharacters;
+    public  void setTotalCharacters(int totalCharacters) {
+        Character.totalCharacters = totalCharacters;
     }
 }
